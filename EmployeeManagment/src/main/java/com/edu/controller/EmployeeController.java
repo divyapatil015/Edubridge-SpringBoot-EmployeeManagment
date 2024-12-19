@@ -54,6 +54,71 @@ public class EmployeeController {
 	 public Employee updateEmployeeById(@PathVariable("empid") Integer employeeid , @RequestBody Employee employee) throws GlobalExceptionHandling  {
 		 return employeeService.updateEmployeeById(employeeid,employee);
 	 }
-
+	 
+	 //findByEmployeeemail
+	 @GetMapping("/findByEmployeeemail/{emailid}")
+	 public Employee findByEmployeeemail(@PathVariable("emailid") String employeeemail)throws GlobalExceptionHandling {
+		 
+		 return employeeService.findByEmployeeemail(employeeemail);
+	 }
+	 
+	 @GetMapping("/findByEmployeephone/{phoneno}")
+	 public Employee findByEmployeephone(@PathVariable("phoneno") String employeephone) throws GlobalExceptionHandling{
+		return employeeService.findByEmployeephone(employeephone);
+		 
+	 }
+	 
+	//findByEmployeeemailAndEmployeephone
+	 @GetMapping("/findByEmployeeemailAndEmployeephone/emailid/{emailid}/phoneno/{phoneno}")
+	 public Employee findByEmployeeemailAndEmployeephone(@PathVariable("emailid") String employeeemail , @PathVariable("phoneno") String employeephone) throws GlobalExceptionHandling {
+		 return  employeeService.findByEmployeeemailAndEmployeephone(employeeemail,employeephone);
+		 
+	 }
+	
+	 //find employee by sing email @Query method
+	 @GetMapping("/getEmployeeByemailid/{emailid}")
+	 public Employee getEmployeeByemailid(@PathVariable("emailid") String employeeemail)throws GlobalExceptionHandling {
+		 return employeeService.getEmployeeByemailid(employeeemail);
+	 }
+	 
+	 //find Employee by phone no using @Query method
+	 @GetMapping("/getEmployeeByphoneno/{phoneno}")
+	 public Employee getEmployeeByphoneno(@PathVariable("phoneno") String employeephone)throws GlobalExceptionHandling{
+		 return employeeService.getEmployeeByphoneno(employeephone);
+	 }
+	 
+	 /*
+	 //findByEmployeeemailAndEmployeephone using @Query
+	 @GetMapping("/getEmployeeByEmailAndPhone/emailid/{emailid}/phoneno/{phoneno")
+	 public Employee getEmployeeByPhoneAndEmail(@PathVariable("emailid") String employeeemail , @PathVariable("phoneno") String employeephone) {
+		 
+		 return employeeService.getEmployeeByPhoneAndEmail(employeeemail,employeephone);
+	 }
+	 */
+	 
+	 //delete the record using @Query
+	 @DeleteMapping("/deleteEmployeeByEmail/{emailid}")
+	 public String deleteEmployeeByEmail(@PathVariable("emailid") String employeeemail) {
+		 int i = employeeService.deleteEmployeeByEmail(employeeemail);
+			if(i>0)
+				return "Employee is deleted";
+			else
+				return "Employee not deleted";
+	 }
+	 
+	 @DeleteMapping("/deleteEmployeeByPhone/{phoneno}")
+	 public String deleteEmployeeByPhone(@PathVariable("phoneno") String employeephone) {
+		 int i = employeeService.deleteEmployeeByPhone(employeephone);
+		 if(i>0)
+			 return " Employee is deleted";
+		 else
+			 return "Employee is not deleted";
+	 }
+	 
+	 //update salary based on employeeid
+	 @PutMapping("/updateEmployeeSalary/esalary/{esalary}/empid/{empid}")
+	 public String updateEmployeeSalary(@PathVariable("esalary") float esalary, @PathVariable("empid") Integer empid) {
+		 return employeeService.updateEmployeeSalary(esalary,empid);
+	 }
 }
 

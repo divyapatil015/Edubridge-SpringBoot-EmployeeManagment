@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 public class ErrorMessage {
 	private HttpStatus httpStatus;
 	private String message;
+	
 
 	public ErrorMessage() {
 		super();

@@ -79,12 +79,18 @@ public class DepartmentServiceImpl implements DepartmentService{
 		// TODO Auto-generated method stub
 		Optional<Department> deptob = departmentRepository.findById(departmentid);
 		Optional<Employee> empob = employeeRepository.findById(employeeid);
-		if(!deptob.isPresent()) 
-			throw new GlobalExceptionHandling("Department id "+departmentid+" not exist");
-	
-		if(!empob.isPresent()) 
-			throw new GlobalExceptionHandling("Employee id "+employeeid+" not exist");
-	
+		
+			if(!deptob.isPresent() && !empob.isPresent() ) 
+			throw new GlobalExceptionHandling("Employee id "+employeeid+" Department id "+departmentid+ "  both are not exist");
+			
+			else if(!empob.isPresent()) 
+				throw new GlobalExceptionHandling("Employee id "+employeeid+" not exist");
+			
+			else if(!deptob.isPresent())
+				throw new GlobalExceptionHandling("Department id "+departmentid+ " not exist");
+			
+			
+		
 		
 		Department dept= departmentRepository.findById(departmentid).get();
 		Employee emp = employeeRepository.findById(employeeid).get();
