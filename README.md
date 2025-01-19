@@ -39,7 +39,7 @@ server.port=8080
 1. **Spring Boot Starter Web**: To create REST APIs.
 2. **Spring Boot Starter Data JPA**: For database interactions.
 3. **MySQL Connector**: To connect with MySQL database.
-4. **Swagger**: (Optional) For API documentation.
+4. **Spring Boot DevTools**: For faster application development and hot-reloading
 
 ## Database Schema
 ### Employee Table:
